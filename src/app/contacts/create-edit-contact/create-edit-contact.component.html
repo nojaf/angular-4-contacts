@@ -1,0 +1,45 @@
+<h2 class="title is-4">{{ title }}</h2>
+<form [formGroup]="contactForm" (submit)="saveContact($event)">
+
+
+
+
+  <div class="field">
+    <label class="label">Name</label>
+    <p class="control has-icons-left has-icons-right">
+      <input class="input"
+             [ngClass]="nameClass"
+             type="text"
+             placeholder="Name"
+             formControlName="name" />
+      <span class="icon is-small is-left">
+      <i class="fa fa-user"></i>
+    </span>
+      <span class="icon is-small is-right">
+      <i class="fa fa-check"></i>
+    </span>
+    </p>
+    <p class="help is-danger"
+       *ngIf="!contactForm.controls['name'].valid && contactForm.controls['name'].touched">required</p>
+  </div>
+  <div class="field">
+    <label class="label">Email</label>
+    <p class="control has-icons-left has-icons-right">
+      <input class="input"
+             [ngClass]="emailClass"
+             type="text" placeholder="Email" formControlName="email" />
+      <span class="icon is-small is-left">
+      <i class="fa fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+      <i class="fa fa-check"></i>
+    </span>
+    </p>
+    <p class="help is-danger"
+       *ngIf="!contactForm.controls['email'].valid && contactForm.controls['email'].touched">required, valid email</p>
+  </div>
+  <input type="submit" value="Save" class="button is-primary" [disabled]="!contactForm.valid">
+
+  <p>Form value: {{ contactForm.controls['email'].touched | json }}</p>
+  <p>Form status: {{ contactForm.status | json }}</p>
+</form>
